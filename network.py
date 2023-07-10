@@ -634,24 +634,3 @@ class PMC_Net(nn.Layer):
         d1 = self.Conv_1x1(d1)
 
         return d1
-
-
-# 测试主网络
-class test_Net(nn.Layer):
-    def __init__(self, chann_in, chann_out):
-        super(test_Net, self).__init__()
-        self.out = PMC_Net(chan_in=3, chan_out=2)
-
-    def forward(self, x):
-        x = self.out(x)
-        return x
-
-
-IMAGE_SIZE = (256, 256)
-num_classes = 2
-network = test_Net(chann_in=3, chann_out=num_classes)
-model = paddle.Model(network)
-model.summary((-1, 3) + IMAGE_SIZE)
-
-FLOPs = paddle.flops(network, [1, 3, 256, 256], custom_ops=None, print_detail=True)  # 计算量
-print(FLOPs)
