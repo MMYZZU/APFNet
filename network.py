@@ -268,7 +268,7 @@ class MBC_block52(nn.Layer):
         self.dw51conv=dw51conv_block(ch_in=1920,ch_out=1920)
         self.se=SE_block(ch_in=1920,ch_out=80)
         self.nosingleconv=nosingleconv_block(ch_in=1920,ch_out=320)
-        self.dropout=nn.Dropout2D(p=0.1125)
+        self.dropout=nn.Dropout2D(p=0.100)
     def forward(self,x):
         x=self.singleconv(x)
         x=self.dw51conv(x)
